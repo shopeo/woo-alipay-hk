@@ -1,7 +1,7 @@
 {
-	"name": "shopeo-plugin-scaffold",
+	"name": "woo-alipay-hk",
 	"version": "0.0.1",
-	"description": "SHOPEO Plugin Scaffold",
+	"description": "Alipay Hong Kong Payment Gateway Woocommerce Plugin",
 	"scripts": {
 		"dev": "npm run development",
 		"development": "mix",
