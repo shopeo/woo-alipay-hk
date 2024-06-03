@@ -1,4 +1,4 @@
-=== Shopeo Plugin Scaffold ===
+=== Alipay Hong Kong Payment Gateway ===
 Contributors: SHOPEO
 Donate link: https://shopeo.cn/
 Requires at least: 5.9
