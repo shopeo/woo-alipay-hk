@@ -1,10 +1,10 @@
 <?php
 
 class WOO_AliPay_HK_Gateway extends \WC_Payment_Gateway {
-	private $client_id = '';
-	private $alipay_public_key = '';
-	private $private_key = '';
 	private $sandbox = false;
+	private $client_id = '';
+	private $public_key = '';
+	private $private_key = '';
 
 	public function __construct() {
 		$this->id                 = 'woo_alipay_hk';
@@ -16,11 +16,11 @@ class WOO_AliPay_HK_Gateway extends \WC_Payment_Gateway {
 		$this->supports    = array( 'products' );
 		$this->init_form_fields();
 		$this->init_settings();
-		$this->enabled           = $this->get_option( 'enabled' );
-		$this->sandbox           = $this->get_option( 'sandbox' );
-		$this->client_id         = $this->get_option( 'client_id' );
-		$this->alipay_public_key = $this->get_option( 'alipay_public_key' );
-		$this->private_key       = $this->get_option( 'private_key' );
+		$this->enabled     = $this->get_option( 'enabled' );
+		$this->sandbox     = $this->get_option( 'sandbox' ) == 'yes';
+		$this->client_id   = $this->get_option( 'client_id' );
+		$this->public_key  = $this->get_option( 'public_key' );
+		$this->private_key = $this->get_option( 'private_key' );
 
 		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array(
 			$this,
@@ -32,35 +32,35 @@ class WOO_AliPay_HK_Gateway extends \WC_Payment_Gateway {
 
 	public function init_form_fields() {
 		$this->form_fields = array(
-			'enabled'           => array(
+			'enabled'     => array(
 				'title'       => __( 'Enable/Disable', 'woo-alipay-hk' ),
 				'label'       => __( 'Enable Alipay', 'woo-alipay-hk' ),
 				'type'        => 'checkbox',
 				'description' => '',
 				'default'     => 'no'
 			),
-			'sandbox'           => array(
+			'sandbox'     => array(
 				'title'       => __( 'Sandbox', 'woo-alipay-hk' ),
 				'label'       => __( 'Enable Sandbox', 'woo-alipay-hk' ),
 				'type'        => 'checkbox',
 				'description' => '',
 				'default'     => 'no'
 			),
-			'client_id'         => array(
+			'client_id'   => array(
 				'title'       => __( 'Client ID', 'woo-alipay-hk' ),
 				'type'        => 'text',
 				'description' => __( 'Client ID', 'woo-alipay-hk' ),
 				'default'     => '',
 				'desc_tip'    => true,
 			),
-			'alipay_public_key' => array(
+			'public_key'  => array(
 				'title'       => __( 'Public Key', 'woo-alipay-hk' ),
 				'type'        => 'textarea',
 				'description' => __( 'Public Key', 'woo-alipay-hk' ),
 				'default'     => '',
 				'desc_tip'    => true,
 			),
-			'private_key'       => array(
+			'private_key' => array(
 				'title'       => __( 'Private Key', 'woo-alipay-hk' ),
 				'type'        => 'textarea',
 				'description' => __( 'Private Key', 'woo-alipay-hk' ),
